@@ -1,10 +1,14 @@
 <?php
 
 class Account {
+    public $title;
+    public $accountNo;
     protected $balance;
 
-    public function __construct($balance)
+    public function __construct($title, $accountNo, $balance)
     {
+        $this->title = $title;
+        $this->accountNo = $accountNo;
         $this->balance = $balance;
     }
 
@@ -17,7 +21,7 @@ class Account {
     }
 
     public function getBalance() {
-        return $this->balance;
+        return 'Balance in your account no. ' . $this->accountNo . ' is PKR: ' . $this->balance;
     }
 }
 
@@ -25,29 +29,30 @@ class SavingAccount extends Account
 {
     public $interest;
 
-    public function __construct($balance, $interest) {
-        parent::__construct($balance);
+    public function __construct($title, $accountNo, $balance, $interest) {
+        parent::__construct($title, $accountNo, $balance);
         
         $this->interest = $interest;
     }
 
     public function deposit($amount)
     {
-        $this->balance = $amount * $this->interest;
+        $this->balance = $this->balance + $amount * ($this->interest / 100);
     }
 }
 
-$savingAccount = new SavingAccount(10000, 10);
+$savingAccount = new SavingAccount('Aziz', 'PKR123', 10000, 10);
 
 $balance = $savingAccount->getBalance();
 
-echo 'Balance before interest: ' . $balance;
+echo $balance;
 
 $savingAccount->deposit(10000);
 
 $savingBalance = $savingAccount->getBalance();
 
-echo '<br> Saving Balance: ' . $savingBalance;
+echo '<br>';
+echo $savingBalance;
 
 // $account = new Account(2000);
 
