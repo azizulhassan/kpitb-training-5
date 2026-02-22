@@ -69,3 +69,13 @@ echo $savingBalance;
 // $balance = $account->getBalance();
 
 // echo '<br> The balance after withdrawal is: ' . $balance;
+?>
+
+<html>
+    <head>
+        <title>Account Class</title>
+    </head>
+    <body>
+        
+    </body>
+</html>
